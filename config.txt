@@ -577,7 +577,10 @@
 #cmdline=
 
 ## kernel (string)
-##     Alternative name to use when loading kernel.
+##     Any user supplied binary that should be executed by the CPU after changing context from the GPU.
+##     This can be a kernel zImage or u-boot.bin or whatever.
+##
+##     Default `kernel.img`
 ##
 #kernel=
 
