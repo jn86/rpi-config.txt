@@ -574,12 +574,12 @@
 ## cmdline (string)
 ##     Command line parameters. Can be used instead of cmdline.txt file
 ##
-#cmdline=""
+#cmdline=
 
 ## kernel (string)
 ##     Alternative name to use when loading kernel.
 ##
-#kernel=""
+#kernel=
 
 ## kernel_address
 ##     Address to load kernel.img file at
@@ -599,7 +599,7 @@
 ## ramfsfile (string)
 ##     ramfs file to load
 ##
-#ramfsfile=""
+#ramfsfile=
 
 ## ramfsaddr
 ##     Address to load ramfs file at
