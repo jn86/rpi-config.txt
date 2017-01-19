@@ -532,6 +532,8 @@
 ##     Disable adjusting the refresh rate of RAM every 500ms
 ##     (measuring RAM temparature).
 ##
+##     Default `0`.
+##
 #disable_pvt=1
 
 ################################################################################
