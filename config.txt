@@ -570,7 +570,7 @@
 #fixup_file=fixup.dat
 
 ## start_x
-##     Set to "1" to use `*_x.*` versions of `start.elf` and `fixup.dat`.
+##     Set to `1` to use `*_x.*` versions of `start.elf` and `fixup.dat`.
 ##
 ##     `start_x.elf` and `fixup_x.dat` are experimental versions of the supplied
 ##     firmware which contain more codecs.
