@@ -458,16 +458,6 @@
 ##  Camera Settings
 ################################################################################
 
-## start_x
-##     Set to "1" to enable the camera module.
-##
-##     Enabling the camera requires gpu_mem option to be specified with a value
-##     of at least 128.
-##
-##     Default 0
-##
-#start_x=0
-
 ## disable_camera_led
 ##     Turn off the red camera led when recording video or taking a still
 ##     picture.
@@ -578,6 +568,19 @@
 ##     Default `fixup.dat`
 ##
 #fixup_file=fixup.dat
+
+## start_x
+##     Set to "1" to use `*_x.*` versions of `start.elf` and `fixup.dat`.
+##
+##     `start_x.elf` and `fixup_x.dat` are experimental versions of the supplied
+##     firmware which contain more codecs.
+##
+##     Users reported that the rpi camera modules doesn't work unless this
+##     option is enabled.
+##
+##     Default `0`
+##
+#start_x=0
 
 ## disable_commandline_tags
 ##     Stop start.elf from filling in ATAGS (memory from 0x100) before
