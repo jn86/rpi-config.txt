@@ -565,6 +565,20 @@
 ##  Boot Option Settings
 ################################################################################
 
+## start_file
+##     The name of the start.elf binary.
+##
+##     Default `start.elf`
+##
+#start_file=start.elf
+
+## fixup_file
+##     The name of the fixup.dat binary.
+##
+##     Default `fixup.dat`
+##
+#fixup_file=fixup.dat
+
 ## disable_commandline_tags
 ##     Stop start.elf from filling in ATAGS (memory from 0x100) before
 ##     launching kernel
@@ -582,7 +596,7 @@
 ##
 ##     Default `kernel.img`
 ##
-#kernel=
+#kernel=kernel.img
 
 ## kernel_address
 ##     Address to load kernel.img file at
