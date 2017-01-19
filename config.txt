@@ -456,6 +456,9 @@
 
 ################################################################################
 ##  Camera Settings
+##
+##  To use the camera module make sure that `start_x=1` and `gpu_mem>=128`.
+##
 ################################################################################
 
 ## disable_camera_led
@@ -574,9 +577,6 @@
 ##
 ##     `start_x.elf` and `fixup_x.dat` are experimental versions of the supplied
 ##     firmware which contain more codecs.
-##
-##     Users reported that the rpi camera modules doesn't work unless this
-##     option is enabled.
 ##
 ##     Default `0`
 ##
