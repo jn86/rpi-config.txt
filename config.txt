@@ -585,6 +585,19 @@
 ##
 #start_x=0
 
+## start_debug
+##     Set to `1` to use `*_db.*` versions of `start.elf` and `fixup.dat`.
+##
+##     `start_db.elf` and `fixup_db.dat` are `*_x.*` versions with debug
+##     asserts enabled (VCOS_RELEASE_ASSERTS).
+##
+##     Default `0`
+##
+##     Reference:
+##       - https://github.com/raspberrypi/firmware/issues/408
+##
+#start_debug=0
+
 ## disable_commandline_tags
 ##     Stop start.elf from filling in ATAGS (memory from 0x100) before
 ##     launching kernel
