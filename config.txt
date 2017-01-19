@@ -580,6 +580,9 @@
 ##
 ##     Default `0`
 ##
+##     Reference:
+##       - https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=19334&start=275#p269992
+##
 #start_x=0
 
 ## disable_commandline_tags
