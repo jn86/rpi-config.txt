@@ -24,7 +24,7 @@
 ################################################################################
 
 ## sdtv_mode
-##     defines the TV standard for composite output
+##     Defines the TV standard for composite output.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -37,7 +37,7 @@
 #sdtv_mode=0
 
 ## sdtv_aspect
-##     defines the aspect ratio for composite output
+##     Defines the aspect ratio for composite output.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -48,8 +48,9 @@
 #sdtv_aspect=1
 
 ## sdtv_disable_colourburst
-##     Disables colour burst on composite output. The picture will be
-##     monochrome, but possibly sharper
+##     Disables colour burst on composite output.
+##
+##     The picture will be monochrome, but possibly sharper.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -77,7 +78,10 @@
 
 ## hdmi_force_hotplug
 ##     Pretends HDMI hotplug signal is asserted so it appears a HDMI display
-##     is attached
+##     is attached.
+##
+##     This is useful to workaround problems with HDMI not being detected after
+##     temporary disconnection.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -87,8 +91,8 @@
 #hdmi_force_hotplug=1
 
 ## hdmi_ignore_hotplug
-##     Pretends HDMI hotplug signal is not asserted so it appears a HDMI
-##     display is not attached
+##     Pretends HDMI hotplug signal is **not** asserted so it appears a HDMI
+##     display is **not** attached.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -98,45 +102,39 @@
 #hdmi_ignore_hotplug=1
 
 ## hdmi_drive
-##     chooses between HDMI and DVI modes
+##     Chooses between HDMI and DVI modes.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
 ##     1        Normal DVI mode (No sound)
-##     2        Normal HDMI mode (Sound will be sent if supported and enabled)
+##     2        Normal HDMI mode (Sound will be sent if supported and enabled).
+##              This can make audio work in DMT (computer monitor) modes.
+##
+##     Default is autodetected.
 ##
 #hdmi_drive=2
 
 ## hdmi_ignore_edid
-##     Enables the ignoring of EDID/display data
+##     Enables the ignoring of EDID/display data.
+##
+##     Uncomment this option if your display sends crappy EDID data.
 ##
 #hdmi_ignore_edid=0xa5000080
 
 ## hdmi_edid_file
-##     Read the EDID data from the edid.dat file instead of from the attached
-##     device
+##     Read the EDID data from the edid.dat file.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
 ##     0        Read EDID data from attached device (Default)
-##     1        Read EDID data from edid.txt file
+##     1        Read EDID data from `edid.dat` file
 ##
 #hdmi_edid_file=1
 
-## hdmi_ignore_edid_audio
-##     Pretends all audio formats are unsupported by display. This means ALSA
-##     will default to analogue.
-##
-##     Value    Description
-##     -------------------------------------------------------------------------
-##     0        Use EDID provided values (Default)
-##     1        Pretend all audio formats are unsupported
-##
-#hdmi_ignore_edid_audio=1
-
 ## hdmi_force_edid_audio
-##     Pretends all audio formats are supported by display, allowing
-##     passthrough of DTS/AC3 even when not reported as supported.
+##     Pretends all audio formats are supported by display.
+##
+##     Allows passthrough of DTS/AC3 even when not reported as supported.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -145,9 +143,20 @@
 ##
 #hdmi_force_edid_audio=1
 
+## hdmi_ignore_edid_audio
+##     Pretends all audio formats are unsupported by display.
+##
+##     This means ALSA will default to analogue.
+##
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Use EDID provided values (Default)
+##     1        Pretend all audio formats are unsupported
+##
+#hdmi_ignore_edid_audio=1
+
 ## hdmi_force_edid_3d
-##     Pretends all CEA modes support 3D even when edid doesn't indicate
-##     support for them.
+##     Pretends all CEA modes support 3D.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -157,7 +166,7 @@
 #hdmi_force_edid_3d=1
 
 ## avoid_edid_fuzzy_match
-##     Avoid fuzzy matching of modes described in edid.
+##     Avoid fuzzy matching of modes described in EDID.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -167,9 +176,7 @@
 #avoid_edid_fuzzy_match=1
 
 ## hdmi_pixel_encoding
-##     Force the pixel encoding mode.
-##     By default it will use the mode requested from edid so shouldn't
-##     need changing.
+##     Force the HDMI pixel encoding mode.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -182,26 +189,26 @@
 #hdmi_pixel_encoding=1
 
 ## hdmi_group
-##     Defines the HDMI type
+##     Defines the HDMI timing mode.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
-##     0        Use the preferred group reported by the edid (Default)
-##     1        CEA
-##     2        DMT
+##     0        Use the preferred group reported by the EDID (Default)
+##     1        CEA (CEA EDID Timing Extension data format)
+##     2        DMT (Display Monitor Timing)
 ##
-#hdmi_group=1
+#hdmi_group=2
 
 ## hdmi_mode
-##     defines screen resolution in CEA or DMT format
+##     Defines screen resolution in CEA or DMT format.
 ##
-##     H means 16:9 variant (of a normally 4:3 mode).
-##     2x means pixel doubled (i.e. higher clock rate, with each pixel repeated
-##                                  twice)
-##     4x means pixel quadrupled (i.e. higher clock rate, with each pixel
-##                                     repeated four times)
-##     reduced blanking means fewer bytes are used for blanking within the data
-##                      stream (i.e. lower clock rate, with fewer wasted bytes)
+##     H  - means 16:9 variant (of a normally 4:3 mode).
+##     2x - means pixel doubled (i.e. higher clock rate, with each pixel repeated
+##            twice)
+##     4x - means pixel quadrupled (i.e. higher clock rate, with each pixel
+##            repeated four times)
+##     reduced blanking - means fewer bytes are used for blanking within the data
+##                          stream (i.e. lower clock rate, with fewer wasted bytes)
 ##
 ##     Value    hdmi_group=CEA                  hdmi_group=DMT
 ##     -------------------------------------------------------------------------
@@ -292,10 +299,10 @@
 ##     85                                       720p      60Hz
 ##     86                                       1366x768        reduced blanking
 ##
-#hdmi_mode=1
+#hdmi_mode=82
 
 ## config_hdmi_boost
-##     configure the signal strength of the HDMI interface.
+##     Configure the signal strength of the HDMI interface.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -311,8 +318,9 @@
 #config_hdmi_boost=0
 
 ## hdmi_ignore_cec_init
-##     Doesn't sent initial active source message.  Avoids bringing
-##     (CEC enabled) TV out of standby and channel switch when rebooting.
+##     Doesn't sent initial active source message.
+##
+##     Avoids bringing (CEC enabled) TV out of standby and channel switch when rebooting.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -323,6 +331,7 @@
 
 ## hdmi_ignore_cec
 ##     Pretends CEC is not supported at all by TV.
+##
 ##     No CEC functions will be supported.
 ##
 ##     Value    Description
@@ -334,30 +343,33 @@
 
 ################################################################################
 ##  Overscan Video Settings
+##
+##  Note: `overscan_*` values can be negative.
+##
 ################################################################################
 
 ## overscan_left
-##     Number of pixels to skip on left
+##     Number of pixels to skip on left.
 ##
 #overscan_left=0
 
 ## overscan_right
-##     Number of pixels to skip on right
+##     Number of pixels to skip on right.
 ##
 #overscan_right=0
 
 ## overscan_top
-##     Number of pixels to skip on top
+##     Number of pixels to skip on top.
 ##
 #overscan_top=0
 
 ## overscan_bottom
-##     Number of pixels to skip on bottom
+##     Number of pixels to skip on bottom.
 ##
 #overscan_bottom=0
 
 ## disable_overscan
-##     Set to 1 to disable overscan
+##     Disables video overscan.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -371,19 +383,21 @@
 ################################################################################
 
 ## framebuffer_width
-##     Console framebuffer width in pixels. Default is display width minus
-##     overscan.
+##     Sets console framebuffer width in pixels.
 ##
-#framebuffer_width=0
+##     Default is display width minus overscan.
+##
+#framebuffer_width=80
 
 ## framebuffer_height
-##     Console framebuffer height in pixels. Default is display height minus
-##     overscan.
+##     Sets console framebuffer height in pixels.
 ##
-#framebuffer_height=0
+##     Default is display height minus overscan.
+##
+#framebuffer_height=25
 
 ## framebuffer_depth
-##     Console framebuffer depth in bits per pixel.
+##     Sets console framebuffer depth in bits per pixel.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -396,14 +410,16 @@
 #framebuffer_depth=16
 
 ## framebuffer_ignore_alpha
-##     Set to 1 to disable alpha channel. Helps with 32bit.
+##     Disables alpha channel.
+##
+##     Helps with `framebuffer_depth=32`.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
 ##     0        Enable Alpha Channel (Default)
 ##     1        Disable Alpha Channel
 ##
-#framebuffer_ignore_alpha=0
+#framebuffer_ignore_alpha=1
 
 ################################################################################
 ##  General Video Settings
@@ -411,8 +427,9 @@
 
 ## display_rotate
 ##     Rotate the display clockwise or flip the display.
+##
 ##     The 90 and 270 degrees rotation options require additional memory on GPU,
-##     so won't work with the 16M GPU split.
+##     so won't work if `gpu_mem<32`.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -426,9 +443,12 @@
 #display_rotate=0
 
 ## dispmanx_offline
-##     Set to "1" to enable offline compositing
+##     Enables offline compositing.
 ##
-##     Default 0
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Disable offline compositing (Default)
+##     1        Enable offline compositing
 ##
 #dispmanx_offline=0
 
@@ -438,24 +458,30 @@
 ##  Hardware decoding of additional codecs can be enabled by purchasing a
 ##  license that is locked to the CPU serial number of your Raspberry Pi.
 ##
-##  Up to 8 licenses per CODEC can be specified as a comma seperated list.
+##  Up to 8 licenses per CODEC can be specified as a comma seperated list. This
+##  enables you to swap the same SD card between the different Pis without
+##  having to edit `config.txt` each time.
 ##
 ################################################################################
 
 ## decode_MPG2
 ##     License key to allow hardware MPEG-2 decoding.
 ##
+##     Can be bought here: https://www.raspberrypi.com/mpeg-2-license-key/
+##
 #decode_MPG2=0x12345678
 
 ## decode_WVC1
 ##     License key to allow hardware VC-1 decoding.
+##
+##     Can be bought here: https://www.raspberrypi.com/vc-1-license-key/
 ##
 #decode_WVC1=0x12345678
 
 ################################################################################
 ##  Camera Settings
 ##
-##  To use the camera module make sure that `start_x=1` and `gpu_mem>=128`.
+##  To use the camera module make sure that `start_x=1` and `gpu_mem>64`.
 ##
 ################################################################################
 
@@ -482,7 +508,7 @@
 ##     0        Disable Test Mod (Default)
 ##     1        Enable Test Mode
 ##
-#test_mode=0
+#test_mode=1
 
 ################################################################################
 ##  Memory Settings
@@ -497,32 +523,36 @@
 ##     0        Enable L2 Cache (Default)
 ##     1        Disable L2 cache
 ##
-#disable_l2cache=0
+#disable_l2cache=1
 
 ## gpu_mem
 ##     GPU memory allocation in MB for all board revisions.
 ##
-##     If set to `16`, `*_cb.*` versions of `start.elf` and `fixup.dat` are used.
+##     If set to `<32`, `*_cb.*` versions of `start.elf` and `fixup.dat` are used.
+##     https://github.com/raspberrypi/linux/issues/503#issuecomment-37134612.
 ##
-##     Default `64`. Min. `16`.
+##     Default `64`, min. `16`.
 ##
 #gpu_mem=128
 
 ## gpu_mem_256
 ##     GPU memory allocation in MB for 256MB board revision.
-##     This option overrides gpu_mem.
+##
+##     This option overrides `gpu_mem`.
 ##
 #gpu_mem_256=192
 
 ## gpu_mem_512
 ##     GPU memory allocation in MB for 512MB board revision.
-##     This option overrides gpu_mem.
+##
+##     This option overrides `gpu_mem`.
 ##
 #gpu_mem_512=448
 
 ## gpu_mem_1024
 ##     GPU memory allocation in MB for 1024MB board revision.
-##     This option overrides gpu_mem.
+##
+##     This option overrides `gpu_mem`.
 ##
 #gpu_mem_1024=944
 
@@ -530,7 +560,16 @@
 ##     Disable adjusting the refresh rate of RAM every 500ms
 ##     (measuring RAM temparature).
 ##
-##     Default `0`.
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Enable PVT
+##     1        Disable PVT
+##
+##     Note: since 2016-05-20 release of RPi firmware this option should be
+##     a noop and be hardcoded to `1`.
+##     Reference:
+##       - https://github.com/raspberrypi/firmware/issues/640
+##       - https://github.com/raspberrypi/firmware/commit/ac0c0bff7951a39d371a46c4a80a9ec560e33c16
 ##
 #disable_pvt=1
 
@@ -539,20 +578,27 @@
 ##
 ##  CMA enables dynamic management of the ARM and GPU memory split at runtime.
 ##
-##  The following options need to be in cmdline.txt for CMA to work:
+##  The following options need to be passed to the kernel for CMA to work:
+##
 ##    coherent_pool=6M smsc95xx.turbo_mode=N
+##
+##  According to pocornmix@github, CMA is not officially supported because of
+##  "a flood of kernel alloc failures under heavy load involving network".
+##  https://github.com/raspberrypi/linux/issues/503#issuecomment-37132749
 ##
 ################################################################################
 
 ## cma_lwm
-##     When GPU has less than cma_lwm (low water mark) memory available it
-##     will request some from ARM.
+##     CMA low water mark.
+##
+##     When available GPU memory < `cma_lwm`, GPU will request some from ARM.
 ##
 #cma_lwm=16
 
 ## cma_hwm
-##     When GPU has more than cma_hwm (high water mark) memory available it
-##     will release some to ARM.
+##     CMA high water mark.
+##
+##     When available GPU memory > `cma_hwm`, GPU will release some from ARM.
 ##
 #cma_hwm=32
 
@@ -560,14 +606,14 @@
 ##  Boot Option Settings
 ################################################################################
 
-## start_file
+## start_file (string)
 ##     The name of the start.elf binary.
 ##
 ##     Default `start.elf`
 ##
 #start_file=start.elf
 
-## fixup_file
+## fixup_file (string)
 ##     The name of the fixup.dat binary.
 ##
 ##     Default `fixup.dat`
@@ -580,12 +626,15 @@
 ##     `start_x.elf` and `fixup_x.dat` are experimental versions of the supplied
 ##     firmware which contain more codecs.
 ##
-##     Default `0`
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Use default firmware - `start.elf` and `fixup.dat` (Default)
+##     1        Use `start_x.elf` and `fixup_x.dat`
 ##
 ##     Reference:
 ##       - https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=19334&start=275#p269992
 ##
-#start_x=0
+#start_x=1
 
 ## start_debug
 ##     Set to `1` to use `*_db.*` versions of `start.elf` and `fixup.dat`.
@@ -593,26 +642,70 @@
 ##     `start_db.elf` and `fixup_db.dat` are `*_x.*` versions with debug
 ##     asserts enabled (VCOS_RELEASE_ASSERTS).
 ##
-##     Default `0`
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Use default firmware - `start.elf` and `fixup.dat` (Default)
+##     1        Use `start_db.elf` and `fixup_db.dat`
 ##
 ##     Reference:
 ##       - https://github.com/raspberrypi/firmware/issues/408
 ##
-#start_debug=0
+#start_debug=1
 
 ## disable_commandline_tags
-##     Stop start.elf from filling in ATAGS (memory from 0x100) before
+##     Stops `start.elf` from filling in ATAGS (memory from 0x100) before
 ##     launching kernel
 ##
 #disable_commandline_tags=0
 
+## arm_control
+##     Switches between ARMv7 and ARMv8 on RPi3B.
+##
+##     Set to `0x200` to boot in ARMv8 (aarch64) mode.
+##
+#arm_control=0x200
+
+## avoid_warnings
+##     Disables occasional warning symbols in top right corner of display.
+##
+##     The B+ has an under voltage detect trigger which results in the power
+##     led going off when voltage drops below about 4.65V. The signal is also
+##     available on a gpio line (GPIO35). Latest firmware update (2014-07-20)
+##     will display a warning symbol in top right of display when this is
+##     detected. It will also disable turbo mode while the warning is displayed
+##     to try to reduce the chances of crashing. There is also a warning symbol
+##     to the existing over-temperature condition (> 85'C), which also disabled
+##     turbo mode.
+##
+##     As of 2016-09-12 firmware, there are 3 types of conditions and symbols.
+##
+##     Condition          Action                     Symbol
+##     -------------------------------------------------------------------------
+##     Voltage < 4.65V    Turbo is disabled          Flash
+##     Temp is 80-50C     ARM is throttled           Half-filled thermometer
+##     Temp is > 85C      ARM + GPU are throttled    Filled thermometer
+##
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Enable the warning overlay (Default)
+##     1        Disable the warning overlay
+##     2        Disable the overlay and allow turbo under low-voltage conditions
+##
+##     Reference:
+##       - https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=82373
+##
+#avoid_warnings=1
+
 ## cmdline (string)
-##     Command line parameters. Can be used instead of cmdline.txt file
+##     The alternative filename on the boot partition to read the kernel command line string from.
+##
+##     Default `cmdline.txt`.
 ##
 #cmdline=
 
 ## kernel (string)
 ##     Any user supplied binary that should be executed by the CPU after changing context from the GPU.
+##
 ##     This can be a kernel zImage or u-boot.bin or whatever.
 ##
 ##     Default `kernel.img`
@@ -620,12 +713,12 @@
 #kernel=kernel.img
 
 ## kernel_address
-##     Address to load kernel.img file at
+##     Address to load `kernel=` file at.
 ##
 #kernel_address=0x00000000
 
 ## kernel_old
-##     Support loading old kernels
+##     Support loading old kernels.
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
@@ -635,7 +728,7 @@
 #kernel_old=1
 
 ## ramfsfile (string)
-##     ramfs file to load
+##     ramfs file to load.
 ##
 #ramfsfile=
 
@@ -645,8 +738,9 @@
 #ramfsaddr=0x00000000
 
 ## initramfs (string address)
-##     ramfs file and address to load it at (it's like ramfsfile+ramfsaddr in
-##     one option).
+##     ramfs filename and the memory address to load it at.
+##
+##     It's like `ramfsfile`+`ramfsaddr` in one option.
 ##
 ##     NOTE: this option uses different syntax than all other options - you
 ##           should not use "=" character here.
@@ -654,52 +748,70 @@
 #initramfs initramf.gz 0x00800000
 
 ## device_tree_address
-##     Address to load device_tree at
+##     Address to load `device_tree` at.
 ##
 #device_tree_address=0x00000000
 
 ## init_uart_baud
-##     Initial uart baud rate.
+##     Initial uart baud rate in Hz.
 ##
-##     Default 115200
+##     Default `115200`
 ##
 #init_uart_baud=115200
 
 ## init_uart_clock
-##     Initial uart clock.
+##     Initial uart clock in Hz.
 ##
-##     Default 3000000 (3MHz)
+##     Default `3000000` (3MHz)
 ##
 #init_uart_clock=3000000
 
 ## init_emmc_clock
-##     Initial emmc clock, increasing this can speedup your SD-card.
+##     Initial emmc clock in HZ.
 ##
-##     Default 100000000 (100mhz)
+##     Increasing this can speedup your SD-card.
+##
+##     Default `100000000` (100mhz)
 ##
 #init_emmc_clock=100000000
 
+## bootcode_delay
+##     Wait for a given number of seconds in `bootcode.bin` before loading `start.elf`.
+##
+##     This is particularly useful to insert a delay before reading the EDID of
+##     the monitor, which can help if the Pi and monitor are powered from the
+##     same source but the monitor takes longer to start up than the Pi. Try
+##     setting this value if the display detection is wrong on initial boot, but
+##     is correct if you soft-reboot the Pi without removing power from the monitor.
+##
+##     Default `0`
+##
+#boot_delay=0
+
 ## boot_delay
-##     Wait for a given number of seconds in start.elf before loading
-##     kernel.img.
+##     Wait for a given number of seconds in `start.elf` before loading `kernel=`.
 ##
 ##     delay = (1000 * boot_delay) + boot_delay_ms
 ##
-##     Default 1
+##     This can be useful if your SD card needs a while to 'get ready' before
+##     Linux is able to boot from it.
+##
+##     Default `1`
 ##
 #boot_delay=0
 
 ## boot_delay_ms
-##     Wait for a given number of milliseconds in start.elf before loading
-##     kernel.img.
+##     Wait for a given number of milliseconds in start.elf before loading `kernel=`.
 ##
 ##     delay = (1000 * boot_delay) + boot_delay_ms
 ##
-##     Default 0
+##     Default `0`
 ##
 #boot_delay_ms=0
 
 ## avoid_safe_mode
+##     Ensure Safe Mode is not triggered.
+##
 ##     Adding a jumper between pins 5 & 6 of P1 enables a recovery Safe Mode.
 ##     If pins 5 & 6 are used for connecting to external devices (e.g. GPIO),
 ##     then this setting can be used to ensure Safe Mode is not triggered.
@@ -724,11 +836,10 @@
 ################################################################################
 ##  Overclocking Settings
 ##
-##  ARM, SDRAM and GPU each have their own PLLs and can have unrelated
-##  frequencies.
+##  ARM, SDRAM and GPU each have their own PLLs and can have unrelated frequencies.
 ##
-##  The GPU core, h264, v3d and isp share a PLL, so need to have related
-##  frequencies.
+##  The GPU core, h264, v3d and isp share a PLL, so need to have related frequencies.
+##
 ##  pll_freq = floor(2400 / (2 * core_freq)) * (2 * core_freq)
 ##  gpu_freq = pll_freq / [even number]
 ##
@@ -749,8 +860,8 @@
 ################################################################################
 
 ## force_turbo
-##     Control the kernel "ondemand" governor. It has no effect if no overclock
-##     settings are specified.
+##     Forces overclocked settings to be always on.
+##
 ##     May set warrany bit.
 ##
 ##     Value    Description
@@ -765,11 +876,12 @@
 #force_turbo=0
 
 ## initial_turbo
-##     Enables turbo mode from boot for the given value in seconds (up to 60)
-##     or until cpufreq sets a frequency. Can help with sdcard corruption if
-##     overclocked.
+##     Enables turbo mode from boot for the given value in seconds or until
+##     cpufreq sets a frequency.
 ##
-##     Default 0
+##     Can help with sdcard corruption if overclocked.
+##
+##     Default `0`, max. `60`.
 ##
 #initial_turbo=0
 
