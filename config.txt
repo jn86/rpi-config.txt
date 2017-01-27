@@ -1,7 +1,7 @@
 ################################################################################
 ##  Raspberry Pi Configuration Settings
 ##
-##  Revision 16, 2013/06/22
+##  Revision 17, 2017/02/01
 ##
 ##  Details taken from the eLinux wiki
 ##  For up-to-date information please refer to wiki page.
@@ -114,6 +114,22 @@
 ##
 #hdmi_drive=2
 
+## hdmi_blanking
+##     This allows you to choose whether the HDMI output should be switched off
+##     when DPMS is triggered, this is to mimic behaviour of other computers,
+##     after a specific amount of time the display not only blanks, but will also
+##     go into Low-Power/Standby Mode due to "No Signal".
+##
+##     NOTE: This feature may cause issues when using applications which don't
+##     use the framebuffer, such as omxplayer.
+##
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        HDMI Output will Blank instead of being Disabled (default)
+##     1        HDMI Output will be Disabled rather than just Blank
+##
+#hdmi_blanking=1
+
 ## hdmi_ignore_edid
 ##     Enables the ignoring of EDID/display data.
 ##
@@ -195,7 +211,11 @@
 ##     -------------------------------------------------------------------------
 ##     0        Use the preferred group reported by the EDID (Default)
 ##     1        CEA (CEA EDID Timing Extension data format)
+##              These are "TV style resolutions" and are more suitable for HDMI
+##              connection. Audio is supported by default in this mode.
 ##     2        DMT (Display Monitor Timing)
+##              These are "monitor style resolutions" and are more suitable for
+##              DVI connection.
 ##
 #hdmi_group=2
 
@@ -668,16 +688,16 @@
 ## avoid_warnings
 ##     Disables occasional warning symbols in top right corner of display.
 ##
-##     The B+ has an under voltage detect trigger which results in the power
-##     led going off when voltage drops below about 4.65V. The signal is also
-##     available on a gpio line (GPIO35). Latest firmware update (2014-07-20)
-##     will display a warning symbol in top right of display when this is
-##     detected. It will also disable turbo mode while the warning is displayed
-##     to try to reduce the chances of crashing. There is also a warning symbol
-##     to the existing over-temperature condition (> 85'C), which also disabled
-##     turbo mode.
+##     The RPis since RPi1B+ have an under voltage detect trigger which results
+##     in the power led going off when voltage drops below about 4.65V.
+##     The signal is also available on a gpio line (GPIO35). Latest firmware
+##     update (2014-07-20) will display a warning symbol in top right of display
+##     when this is detected. It will also disable turbo mode while the warning
+##     is displayed to try to reduce the chances of crashing. There is also
+##     a warning symbol to the existing over-temperature condition (> 85'C),
+##     which also disabled turbo mode.
 ##
-##     As of 2016-09-12 firmware, there are 3 types of conditions and symbols.
+##     As of 2016-09-12 firmware, there are 3 types of conditions and symbols:
 ##
 ##     Condition          Action                     Symbol
 ##     -------------------------------------------------------------------------
@@ -791,7 +811,8 @@
 ## boot_delay
 ##     Wait for a given number of seconds in `start.elf` before loading `kernel=`.
 ##
-##     delay = (1000 * boot_delay) + boot_delay_ms
+##     Formula:
+##       delay = (1000 * boot_delay) + boot_delay_ms
 ##
 ##     This can be useful if your SD card needs a while to 'get ready' before
 ##     Linux is able to boot from it.
@@ -803,25 +824,12 @@
 ## boot_delay_ms
 ##     Wait for a given number of milliseconds in start.elf before loading `kernel=`.
 ##
-##     delay = (1000 * boot_delay) + boot_delay_ms
+##     Formula:
+##       delay = (1000 * boot_delay) + boot_delay_ms
 ##
 ##     Default `0`
 ##
 #boot_delay_ms=0
-
-## avoid_safe_mode
-##     Ensure Safe Mode is not triggered.
-##
-##     Adding a jumper between pins 5 & 6 of P1 enables a recovery Safe Mode.
-##     If pins 5 & 6 are used for connecting to external devices (e.g. GPIO),
-##     then this setting can be used to ensure Safe Mode is not triggered.
-##
-##     Value    Description
-##     -------------------------------------------------------------------------
-##     0        Respect Safe Mode input (Default)
-##     1        Ignore Safe Mode input
-##
-#avoid_safe_mode=1
 
 ## disable_splash
 ##     Avoids the rainbow splash screen on boot.
@@ -888,9 +896,13 @@
 ## temp_limit
 ##     Overheat protection. Sets clocks and voltages to default when the SoC
 ##     reaches this Celsius value.
+##
 ##     Setting this higher than default voids warranty.
 ##
-##     Default 85
+##     The LAN9512 is specified by the manufacturers as being qualified from 0C to 70C,
+##     while the AP is qualified from -40C to 85C.
+##
+##     Default `85`.
 ##
 #temp_limit=85
 
@@ -965,19 +977,6 @@
 ##     Default 400.
 ##
 #sdram_freq_min=400
-
-## avoid_pwm_pll
-##     Don't dedicate a pll to PWM audio. This will reduce analogue audio
-##     quality slightly. The spare PLL allows the core_freq to be set
-##     independently from the rest of the gpu allowing more control over
-##     overclocking.
-##
-##     Value    Description
-##     -------------------------------------------------------------------------
-##     0        Linked core_freq (Default)
-##     1        Unlinked core_freq
-##
-#avoid_pwm_pll=1
 
 ################################################################################
 ##  Voltage Settings
@@ -1195,12 +1194,18 @@
 ################################################################################
 
 ## max_usb_current
-##     When set to 1, change the output current limit (for all 4 USB
-##     ports combined) from 600mA to double that, 1200mA.
+##     Toggle the output current limit (for all 4 USB ports combined).
 ##
-##     This option is not available for Model A/B boards.
+##     Available for B+ and 2B models only.
 ##
-##     Default 0.
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Set max. USB current to 600mA (default)
+##     1        Set max. USB current to 1200mA
+##
+##     Reference:
+##       - https://www.raspberrypi.org/forums/viewtopic.php?p=594183#p594183
+##       - https://www.raspberrypi.org/help/faqs/#powerReqs
 ##
 #max_usb_current=0
 
@@ -1211,127 +1216,127 @@
 ## audio
 ##     Enable the onboard ALSA audio
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=audio=off
 
 ## i2c_arm
-##     Enable the ARM's i2c interface
+##     Enable the ARM's _I2C_ interface
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=i2c_arm=off
 
 ## i2c_vc
-##     Enable the i2c interface
+##     Enable the _I2C_ interface
 ##
 ##     Usually reserved for the VideoCore processor
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=i2c_vc=off
 
 ## i2c_arm_baudrate
-##     Set the baudrate of the ARM's i2c interface
+##     Set the baudrate of the ARM's _I2C_ interface
 ##
 ##     Default 100000.
 ##
 #dtparam=i2c_arm_baudrate=100000
 
 ## i2c_vc_baudrate
-##     Set the baudrate of the VideoCore i2c interface
+##     Set the baudrate of the VideoCore _I2C_ interface
 ##
-##     Default 100000.
+##     Default `100000`.
 ##
 #dtparam=i2c_vc_baudrate=100000
 
 ## i2s
-##     Set to "on" to enable the i2s interface
+##     Set to `on` to enable the _I2S_ interface
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=i2s=off
 
 ## spi
-##     Set to "on" to enable the spi interfaces
+##     Set to `on` to enable the _SPI_ interfaces
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=spi=off
 
 ## random
-##     Set to "on" to enable the hardware random
+##     Set to `on` to enable the hardware random.
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=random=off
 
 ## uart0
-##     Set to "off" to disable uart0
+##     Set to `off` to disable _uart0_.
 ##
-##     Default on.
+##     Default `on`.
 ##
 #dtparam=uart0=on
 
 ## watchdog
-##     Set to "on" to enable the hardware watchdog
+##     Set to `on` to enable the hardware watchdog.
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=watchdog=off
 
 ## act_led_trigger
-##     Choose which activity the LED tracks.
+##     Choose which activity the ACT LED tracks.
 ##
-##     Use "heartbeat" for a nice load indicator.
+##     Use `heartbeat` for a nice load indicator.
 ##
-##     Default mmc.
+##     Default `mmc`.
 ##
 #dtparam=act_led_trigger=mmc
 
 ## act_led_activelow
-##     Set to "on" to invert the sense of the LED
+##     Set to `on` to invert the sense of the ACT LED
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=act_led_activelow=off
 
 ## act_led_gpio
-##     Set which GPIO to use for the activity LED
+##     Set which GPIO to use for the ACT LED
 ##
 ##     In case you want to connect it to an external device
 ##
-##     Default 16 on a non-Plus board, 47 on a Plus or Pi 2.
+##     Default `16` on a non-Plus board, `47` otherwise.
 ##
 #dtparam=act_led_gpio=47
 
 ## pwr_led_trigger
-##     Choose which activity the LED tracks.
+##     Choose which activity the PWR LED tracks.
 ##
-##     Use "heartbeat" for a nice load indicator.
+##     Use `heartbeat` for a nice load indicator.
 ##
-##     Not available on Model A/B boards.
+##     Note: Not available on Model A/B boards.
 ##
-##     Default mmc.
+##     Default `mmc`.
 ##
 #dtparam=pwr_led_trigger=mmc
 
 ## pwr_led_activelow
-##     Set to "on" to invert the sense of the LED
+##     Set to `on` to invert the sense of the PWR LED
 ##
-##     Not available on Model A/B boards.
+##     Note: Not available on Model A/B boards.
 ##
-##     Default off.
+##     Default `off`.
 ##
 #dtparam=pwr_led_activelow=off
 
 ## pwr_led_gpio
 ##     Set which GPIO to use for the PWR LED
 ##
-##     In case you want to connect it to an external device
+##     In case you want to connect it to an external device.
 ##
-##     Not available on Model A/B boards.
+##     Note: Not available on Model A/B boards.
 ##
-##     Default 35.
+##     Default `35`.
 ##
 #dtparam=pwr_led_gpio=35
