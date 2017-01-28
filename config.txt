@@ -865,7 +865,10 @@
 ##     setting this value if the display detection is wrong on initial boot, but
 ##     is correct if you soft-reboot the Pi without removing power from the monitor.
 ##
-##     Default `0`
+##     Default `0`.
+##
+##     Reference:
+##       - https://github.com/raspberrypi/documentation/commit/83dcde192c24099b525d4b0be974545e0cfe8961
 ##
 #boot_delay=0
 
