@@ -1229,6 +1229,25 @@
 #max_usb_current=0
 
 ################################################################################
+##  LCD Display
+################################################################################
+
+## ignore_lcd
+##     Toggle LCD display detection
+##
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Enable LCD display detection
+##     1        Disable LCD disaply detection
+##
+##     NOTE: for models A/B only (probably).
+##
+##     Reference:
+##       - https://www.raspberrypi.org/documentation/hardware/display/README.md
+##
+#ignore_lcd=0
+
+################################################################################
 ##  Base Device Tree Parameters
 ################################################################################
 
