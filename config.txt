@@ -793,7 +793,9 @@
 ##
 ##     Default `cmdline.txt`.
 ##
-#cmdline=
+##     NOTE: this used to be a command line parameter string.
+##
+#cmdline=my_cmdline.txt
 
 ## kernel (string)
 ##     Any user supplied binary that should be executed by the CPU after changing context from the GPU.
