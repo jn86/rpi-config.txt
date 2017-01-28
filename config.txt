@@ -196,7 +196,7 @@
 ##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
-##     0        Use EDID provided values (Default)
+##     0        autodetected - RGB limited for CEA, RGB full for DMT (Default)
 ##     1        RGB limited   (16-235)
 ##     2        RGB full      ( 0-255)
 ##     3        YCbCr limited (16-235)
