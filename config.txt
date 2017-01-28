@@ -621,6 +621,8 @@
 ##
 ##     This option overrides `gpu_mem`.
 ##
+##     Max. `192`.
+##
 #gpu_mem_256=192
 
 ## gpu_mem_512
@@ -628,12 +630,16 @@
 ##
 ##     This option overrides `gpu_mem`.
 ##
+##     Max. `448`.
+##
 #gpu_mem_512=448
 
 ## gpu_mem_1024
 ##     GPU memory allocation in MB for 1024MB board revision.
 ##
 ##     This option overrides `gpu_mem`.
+##
+##     Max. `944`.
 ##
 #gpu_mem_1024=944
 
