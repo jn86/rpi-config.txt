@@ -540,6 +540,8 @@
 ##     Turn off the red camera led when recording video or taking a still
 ##     picture.
 ##
+##     Useful for preventing reflections when the camera is facing a window.
+##
 ##     Value    Description
 ##     -------------------------------------------------------------------------
 ##     0        LED enabled (Default)
