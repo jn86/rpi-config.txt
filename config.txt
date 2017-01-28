@@ -565,6 +565,18 @@
 ##
 #disable_audio_dither=1
 
+## pwm_sample_bits
+##     Adjusts the bit depth of the analogue audio output.
+##
+##     Selecting bit depths below `8` will result in nonfunctional audio.
+##     Settings below `8` result in a PLL frequency too low to support.
+##     Generally only useful as a demonstration of how bit depth affects
+##     quantisation noise.
+##
+##     Default is `11`.
+##
+#pwm_sample_bits=1
+
 ################################################################################
 ##  Test Settings
 ################################################################################
