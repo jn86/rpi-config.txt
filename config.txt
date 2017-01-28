@@ -17,6 +17,14 @@
 ##
 ##  Overclock settings will be disabled at runtime if the SoC reaches temp_limit
 ##
+##  File Format:
+##    As `config.txt` is read by the early-stage boot firmware it has a very
+##    simple file format. The format is a single `property=value` statement
+##    on each line, where value is either an integer (i.e. a number) or
+##    a string (without quotes). Comments may be added (or existing config
+##    values may be commented out, which disables them) by starting a line with
+##    the `#` character.
+##
 ################################################################################
 
 ################################################################################
