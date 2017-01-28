@@ -584,12 +584,17 @@
 ## test_mode
 ##     Enable test sound/image during boot for manufacturing test.
 ##
-##     Value    Description
-##     -------------------------------------------------------------------------
-##     0        Disable Test Mod (Default)
-##     1        Enable Test Mode
+##     Displays a test image and sound during boot (but only over the composite
+##     video and analogue audio outputs) for the given number of seconds, before
+##     continuing to boot the OS as normal.
+##     This is used as a manufacturing test.
 ##
-#test_mode=1
+##     Default `0`.
+##
+##     Reference:
+##       - https://github.com/raspberrypi/documentation/commit/ea8461ec66b97511c74117736c7c5e75cfcb529e
+##
+#test_mode=10
 
 ################################################################################
 ##  Memory Settings
