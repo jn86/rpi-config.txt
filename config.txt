@@ -548,6 +548,24 @@
 #disable_camera_led=1
 
 ################################################################################
+##  Analogue Audio (3.5mm jack)
+################################################################################
+
+## disable_audio_dither
+##     Toggle application of the 1.0LSB dither on analogue audio output.
+##
+##     By default, a 1.0LSB dither is applied to the audio stream if it is routed
+##     to the analogue audio output. This can create audible background "hiss" in
+##     some situations, such as if the ALSA volume is set to a low level.
+##
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Enable audio dither (Default)
+##     1        Disable audio dither
+##
+#disable_audio_dither=1
+
+################################################################################
 ##  Test Settings
 ################################################################################
 
