@@ -398,6 +398,22 @@
 ##
 #disable_overscan=1
 
+## overscan_scale
+##     Toggle scaling of all dispmanx layers including EGL and video.
+##
+##     Value    Description
+##     -------------------------------------------------------------------------
+##     0        Undefined (Default)
+##     1        All layers are scaled
+##
+##     Can be used to workaround certain graphics glitches related to overscanning.
+##
+##     Reference:
+##       - https://www.raspberrypi.org/forums/viewtopic.php?f=67&t=15700&p=161893#p161893
+##       - https://github.com/raspberrypi/firmware/commit/59059dea7a8e87489e0f9bc844fd6f54eb96f25d
+##
+#overscan_scale=1
+
 ################################################################################
 ##  Framebuffer Video Settings
 ################################################################################
