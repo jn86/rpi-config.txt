@@ -504,7 +504,7 @@
 #dispmanx_offline=0
 
 ################################################################################
-##  Licensed Codecs
+##  Licensed Keys/Codecs
 ##
 ##  Hardware decoding of additional codecs can be enabled by purchasing a
 ##  license that is locked to the CPU serial number of your Raspberry Pi.
