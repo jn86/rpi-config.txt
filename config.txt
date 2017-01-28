@@ -486,6 +486,9 @@
 ##     0        Disable offline compositing (Default)
 ##     1        Enable offline compositing
 ##
+##     Reference:
+##       - https://github.com/raspberrypi/firmware/issues/84#issuecomment-9846350
+##
 #dispmanx_offline=0
 
 ################################################################################
